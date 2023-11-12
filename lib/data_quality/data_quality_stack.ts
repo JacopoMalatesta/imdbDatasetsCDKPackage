@@ -88,4 +88,46 @@ export class DataQualityStack extends Stack {
 
     return glueJob
   }
+
+  private createGlueJobTrigger (glueJobName: string, glueCrawlerName: string, glueWorkflowName: string): glue.CfnTrigger {
+  //   trigger = aws_glue.CfnTrigger(
+  //     scope=self,
+  //     id="glue-dq-job-trigger",
+  //     actions=[
+  //         aws_glue.CfnTrigger.ActionProperty(job_name=self.data_quality_job.name)
+  //     ],
+  //     type="CONDITIONAL",
+  //     start_on_creation=True,
+  //     predicate=aws_glue.CfnTrigger.PredicateProperty(
+  //         conditions=[
+  //             aws_glue.CfnTrigger.ConditionProperty(
+  //                 crawler_name=self.crawler.name,
+  //                 logical_operator="EQUALS",
+  //                 crawl_state="SUCCEEDED",
+  //             )
+  //         ],
+  //         logical="ANY",
+  //     ),
+  //     workflow_name=self.glue_workflow.name,
+  // )
+
+    // trigger.node.add_dependency(self.data_quality_job)
+
+    const trigger = new glue.CfnTrigger(
+      this,
+      'dataQualityGlueJobTrigger',
+      {
+        actions: [{ jobName: glueJobName }],
+        type: 'CONDITIONAL',
+        predicate: {
+          conditions: [{ crawlerName: glueCrawlerName, logicalOperator: 'EQUALS', crawlState: 'SUCCEEDED' }],
+          logical: 'ANY'
+        },
+        workflowName: glueWorkflowName
+      }
+    )
+
+    trigger.node.addDependency(this.dataQualityGlueJob)
+    return trigger
+  }
 }
