@@ -225,4 +225,12 @@ export class DataCatalogStack extends Stack {
   public getGlueIAMRoleArn (): string {
     return this.glueRole.roleArn
   }
+
+  public getCrawlerName (): string {
+    return 'IMDBRawDatasetsCrawler'
+  }
+
+  public getWorkflowName (): string {
+    return 'imdb-data-manipulation-workflow'
+  }
 }

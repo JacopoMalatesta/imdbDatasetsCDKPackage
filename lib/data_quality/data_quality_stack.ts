@@ -10,6 +10,8 @@ interface DataQualityStackProps extends StackProps {
   glueDatabaseName: string
   glueTables: glueTables
   glueIAMRoleArn: string
+  glueCrawlerName: string
+  glueWorkflowName: string
 }
 
 type DataQualityRulesets = Record<string, glue.CfnDataQualityRuleset>
@@ -19,6 +21,7 @@ export class DataQualityStack extends Stack {
   private readonly glueScriptDeployment: s3_deployment.BucketDeployment
   private readonly glueDataQualityRulesets: DataQualityRulesets
   private readonly dataQualityGlueJob: glue.CfnJob
+  private readonly dataQualityGlueJobTrigger: glue.CfnTrigger
 
   constructor (scope: Construct, id: string, props: DataQualityStackProps) {
     super(scope, id, props)
@@ -44,6 +47,8 @@ export class DataQualityStack extends Stack {
     this.glueDataQualityRulesets = this.createDataQualityRulesets(props.glueDatabaseName, props.glueTables)
 
     this.dataQualityGlueJob = this.createDataQualityGlueJob(props.glueIAMRoleArn)
+
+    this.dataQualityGlueJobTrigger = this.createGlueJobTrigger('dataQualityGlueJob', props.glueCrawlerName, props.glueWorkflowName)
   }
 
   private createDataQualityRulesets (glueDatabaseName: string, glueTables: glueTables): DataQualityRulesets {

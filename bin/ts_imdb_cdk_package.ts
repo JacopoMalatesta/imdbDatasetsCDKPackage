@@ -13,5 +13,7 @@ const dataQualityStack = new DataQualityStack(app, 'DataQualityStack', {
   env: euWestOneEnvironment,
   glueDatabaseName: dataCatalogStack.getGlueDatabaseName(),
   glueTables: dataCatalogStack.glueTables,
-  glueIAMRoleArn: dataCatalogStack.getGlueIAMRoleArn()
+  glueIAMRoleArn: dataCatalogStack.getGlueIAMRoleArn(),
+  glueCrawlerName: dataCatalogStack.getCrawlerName(),
+  glueWorkflowName: dataCatalogStack.getWorkflowName()
 })
