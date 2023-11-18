@@ -131,4 +131,4 @@ if __name__ == "__main__":
     run_data_quality_ruleset_evaluation(ruleset_name_filter="titleBasicsDataQualityRuleset",
                                         glue_database="imdb_raw_datasets",
                                         glue_table="title_basics",
-                                        iam_role="arn:aws:iam::925000840053:role/GlueRole")
+                                        iam_role="arn:aws:iam::925000840053:role/imdbGlueRole")
