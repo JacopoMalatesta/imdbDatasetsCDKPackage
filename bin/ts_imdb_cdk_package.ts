@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib'
-import { DataExtractionStack } from '../lib/data_extraction_stack'
-import { DataCatalogStack } from '../lib/data_catalog_stack'
+import { DataExtractionStack } from '../lib/data_extraction/data_extraction_stack'
+import { DataCatalogStack } from '../lib/data_catalog/data_catalog_stack'
 import { DataQualityStack } from '../lib/data_quality/data_quality_stack'
 
 const euWestOneEnvironment = { account: '925000840053', region: 'eu-west-1' }

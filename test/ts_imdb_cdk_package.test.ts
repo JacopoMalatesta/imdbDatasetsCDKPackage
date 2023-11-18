@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Template, Match } from 'aws-cdk-lib/assertions';
-import * as TsImdbCdkPackage from '../lib/data_extraction_stack';
+import * as TsImdbCdkPackage from '../lib/data_extraction/data_extraction_stack';
 
 test('SQS Queue and SNS Topic Created', () => {
   const app = new cdk.App();

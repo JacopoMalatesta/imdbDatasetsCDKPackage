@@ -32,15 +32,13 @@ export class DataExtractionStack extends Stack {
   }
 
   private createContainerizedLambda (): lambda.DockerImageFunction {
-    const assetImageCodeProps: lambda.AssetImageCodeProps = {
-      file: 'Dockerfile'
-    }
-
     return new lambda.DockerImageFunction(this, 'data-extraction-lambda',
       {
         functionName: 'imdb-datasets-data-extraction-lambda',
         code: lambda.DockerImageCode.fromImageAsset(__dirname,
-          assetImageCodeProps),
+          {
+            file: 'Dockerfile'
+          }),
         timeout: Duration.minutes(5),
         memorySize: 1024
       }

@@ -4,7 +4,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3'
 import * as glue from 'aws-cdk-lib/aws-glue'
 import * as s3_deployment from 'aws-cdk-lib/aws-s3-deployment'
 import * as data_quality_constants from './data_quality_constants'
-import { type glueTables } from '../data_catalog_stack'
+import { type glueTables } from '../data_catalog/data_catalog_stack'
 
 interface DataQualityStackProps extends StackProps {
   glueDatabaseName: string

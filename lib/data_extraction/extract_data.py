@@ -5,7 +5,7 @@ from lambda_utils.s3 import S3ClientInterface, S3Client
 import lambda_utils.sns as sns
 import lambda_utils.time as time_utils
 import lambda_utils.logger as logging_utils
-from params import IMDB_DATASETS
+from constants import IMDB_DATASETS
 
 logger: logging.Logger = logging_utils.get_logger(module=__name__)
 

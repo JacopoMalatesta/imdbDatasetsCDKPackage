@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 
 COPY extract_data.py ./
 COPY lambda_utils/ ./lambda_utils/
-COPY params.py ./
+COPY constants.py ./
 
 # Points to the handler function of your lambda function
 CMD ["extract_data.extract_data"]
